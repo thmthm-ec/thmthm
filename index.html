@@ -3,41 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exchange Rates</title>
+  <title>USD Exchange Rates</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <div class="flex-viewport">
-    <section class="slides text-center">
+  <div class="container">
+    <section class="slides">
+      <!-- USD to DZD -->
       <article>
-        <div class="icon">
-          <a href="https://www.youtube.com/channel/UCB-ZZpUowo6YNaW3q4f5Y8Q" target="_blank">
-            <span class="fa fa-youtube-square"></span>
-          </a>
-        </div>
-        <h1>1 CA DOLLAR</h1>
-        <h1><span class="fa fa-caret-down down-arrow"></span></h1>
+        <h1>1 USD</h1>
         <div class="exchange">
-          <div class="rate">
-            <div class="buy">
-              <h1>168<span>.00</span></h1>
-              <h3>DZD - Algerian Dinar</h3>
-              <h2>BUY RATE</h2>
-            </div>
-            <div class="sell">
-              <h1>166<span>.00</span></h1>
-              <h3>DZD - Algerian Dinar</h3>
-              <h2>SELL RATE</h2>
-            </div>
+          <div class="rate buy">
+            <h2>BUY RATE</h2>
+            <h1 class="rate-value" id="dzd-buy">234.00</h1>
+            <h3>DZD - Algerian Dinar</h3>
+          </div>
+          <div class="rate sell">
+            <h2>SELL RATE</h2>
+            <h1 class="rate-value" id="dzd-sell">232.00</h1>
+            <h3>DZD - Algerian Dinar</h3>
           </div>
         </div>
         <div class="last-update">
-          <p>Last update: Tuesday, November 5, 2024 at 9:20 AM</p>
+          <p id="dzd-last-update">Last update: November 5, 2024</p>
         </div>
       </article>
-      <!-- Repeat <article> for each currency -->
+      
+      <!-- USD to VND -->
+      <article>
+        <h1>1 USD</h1>
+        <div class="exchange">
+          <div class="rate buy">
+            <h2>BUY RATE</h2>
+            <h1 class="rate-value" id="vnd-buy">24,000.00</h1>
+            <h3>VND - Vietnamese Dong</h3>
+          </div>
+          <div class="rate sell">
+            <h2>SELL RATE</h2>
+            <h1 class="rate-value" id="vnd-sell">23,800.00</h1>
+            <h3>VND - Vietnamese Dong</h3>
+          </div>
+        </div>
+        <div class="last-update">
+          <p id="vnd-last-update">Last update: November 5, 2024</p>
+        </div>
+      </article>
     </section>
   </div>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
