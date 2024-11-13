@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+}
+.flex-viewport {
+  overflow: hidden;
+  position: relative;
+}
+.slides {
+  display: flex;
+  width: 100%;
+}
+article {
+  width: 375px;
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.down-arrow {
+  color: gold;
+}
+.exchange {
+  display: flex;
+  justify-content: space-between;
+}
+.rate h1 {
+  font-size: 2em;
+  color: #333;
+}
+.last-update p {
+  font-size: 0.8em;
+  color: #888;
+}
