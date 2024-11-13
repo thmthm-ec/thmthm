@@ -1,38 +1,95 @@
+/* Basic resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1c1c3c, #35357d);
+  color: #fff;
 }
-.flex-viewport {
-  overflow: hidden;
-  position: relative;
+
+/* Container for centering */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
 }
+
 .slides {
   display: flex;
-  width: 100%;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
 article {
-  width: 375px;
-  margin: 0 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  position: relative;
+  background: #292b4d;
+  border-radius: 12px;
+  padding: 25px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
 }
-.icon {
-  position: absolute;
-  right: 10px;
-  top: 10px;
+
+article:hover {
+  transform: translateY(-5px);
 }
-.down-arrow {
-  color: gold;
+
+h1 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #ffd700;
 }
-.exchange {
-  display: flex;
-  justify-content: space-between;
+
+h2 {
+  font-size: 0.9em;
+  color: #bbb;
 }
-.rate h1 {
-  font-size: 2em;
-  color: #333;
+
+h3 {
+  font-size: 0.9em;
+  color: #aaa;
 }
+
+.rate {
+  margin: 20px 0;
+}
+
+.rate-value {
+  font-size: 2.5em;
+  color: #4dff85;
+}
+
 .last-update p {
   font-size: 0.8em;
-  color: #888;
+  color: #999;
+  font-style: italic;
+  margin-top: 10px;
+  animation: fade-in 1s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .slides {
+    flex-direction: column;
+  }
+
+  article {
+    width: 90%;
+  }
 }
