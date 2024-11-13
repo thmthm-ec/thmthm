@@ -1,95 +1,23 @@
-/* Basic resets */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  async function fetchRates() {
+    try {
+      const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+      const data = await response.json();
+      
+      // Update DZD rates
+      document.getElementById("dzd-buy").textContent = `${data.rates.DZD.toFixed(2)}`;
+      document.getElementById("dzd-sell").textContent = `${(data.rates.DZD * 0.98).toFixed(2)}`;
+      document.getElementById("dzd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1c1c3c, #35357d);
-  color: #fff;
-}
-
-/* Container for centering */
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.slides {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-article {
-  background: #292b4d;
-  border-radius: 12px;
-  padding: 25px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
-}
-
-article:hover {
-  transform: translateY(-5px);
-}
-
-h1 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
-  color: #ffd700;
-}
-
-h2 {
-  font-size: 0.9em;
-  color: #bbb;
-}
-
-h3 {
-  font-size: 0.9em;
-  color: #aaa;
-}
-
-.rate {
-  margin: 20px 0;
-}
-
-.rate-value {
-  font-size: 2.5em;
-  color: #4dff85;
-}
-
-.last-update p {
-  font-size: 0.8em;
-  color: #999;
-  font-style: italic;
-  margin-top: 10px;
-  animation: fade-in 1s ease-out;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@media (max-width: 768px) {
-  .slides {
-    flex-direction: column;
+      // Update VND rates
+      document.getElementById("vnd-buy").textContent = `${data.rates.VND.toFixed(2)}`;
+      document.getElementById("vnd-sell").textContent = `${(data.rates.VND * 0.98).toFixed(2)}`;
+      document.getElementById("vnd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
+    } catch (error) {
+      console.error("Failed to fetch exchange rates:", error);
+    }
   }
 
-  article {
-    width: 90%;
-  }
-}
+  fetchRates();
+  setInterval(fetchRates, 60000); // Update every 60 seconds
+});
