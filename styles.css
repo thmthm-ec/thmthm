@@ -1,4 +1,4 @@
-/* Reset margins and padding */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,102 +6,113 @@
     font-family: Arial, sans-serif;
 }
 
-/* Background and centering main container */
+/* Body styling */
 body {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: #fff;
+    text-align: center;
 }
 
+/* Main container styling */
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 800px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
 }
 
-/* Main title styling */
+/* Header styling */
 h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-size: 2.5rem;
     color: #f1c40f;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-/* Exchange rate card styling */
+/* Exchange rate card container */
 .exchange-card {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.15);
     padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
     margin-bottom: 15px;
-    transition: transform 0.2s;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* Hover effect */
 .exchange-card:hover {
     transform: translateY(-5px);
 }
 
+/* Currency name */
 .currency-name {
     font-size: 1.5rem;
+    font-weight: bold;
     color: #f39c12;
+    text-align: left;
 }
 
+/* Exchange rate sections */
 .exchange-info {
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 20px;
+    flex: 1;
 }
 
 .rate-section {
-    margin: 0 20px;
+    flex: 1;
     text-align: center;
 }
 
 .rate-section h2 {
     font-size: 1.25rem;
     font-weight: bold;
-    margin: 5px 0;
+    color: #e67e22;
+    margin-bottom: 5px;
 }
 
 .rate-section h3 {
     font-size: 1rem;
+    color: #ecf0f1;
     font-weight: normal;
-    color: #e67e22;
 }
 
-/* Rate numbers styling */
+/* Rate number styling */
 .rate {
     font-size: 1.75rem;
     font-weight: bold;
     color: #2ecc71;
 }
 
-/* Last update section */
+/* Last update styling */
 .last-update {
     font-size: 0.9rem;
     color: #bdc3c7;
     margin-top: 10px;
+    opacity: 0.8;
 }
 
-/* Responsiveness for smaller screens */
+/* Responsive design */
 @media (max-width: 768px) {
     .exchange-card {
         flex-direction: column;
+        text-align: center;
     }
 
     .currency-name {
         font-size: 1.25rem;
+        margin-bottom: 10px;
     }
 
     .rate-section {
@@ -109,6 +120,6 @@ h1 {
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
     }
 }
