@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   async function fetchRates() {
     try {
-      const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+      // Fetch exchange rates, including the API key for authenticated access
+      const response = await fetch(`https://api.exchangerate-api.com/v4/latest/USD?apikey=5cc63013abfcd5b317b8a4de`);
       const data = await response.json();
       
       // Update DZD rates
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Initial fetch and interval for refreshing every 60 seconds
   fetchRates();
   setInterval(fetchRates, 60000); // Update every 60 seconds
 });
