@@ -4,153 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Exchange Rates</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* Your CSS from earlier */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-
-        .rates-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 80%;
-        }
-
-        .rate-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            margin: 10px;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        .rate-card h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .rate-card h3 {
-            font-size: 18px;
-            color: #666;
-        }
-
-        .last-update {
-            font-size: 14px;
-            color: #999;
-        }
-
-        .buy, .sell {
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        .buy {
-            color: green;
-        }
-
-        .sell {
-            color: red;
-        }
-
-        .rate-card .fa-youtube-square {
-            font-size: 40px;
-            color: red;
-            position: absolute;
-            right: 10px;
-            top: 10px;
-        }
-    </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="rates-container">
-            <!-- USD to DZD Rate -->
-            <div class="rate-card">
-                <div>
-                    <a href="https://www.youtube.com/channel/UCB-ZZpUowo6YNaW3q4f5Y8Q" target="_blank">
-                        <span class="fa fa-youtube-square"></span>
-                    </a>
+<div class="container">
+    <div class="rates-container">
+        <!-- USD to DZD Rate Card -->
+        <div class="rate-card">
+            <a href="https://www.youtube.com/channel/UCB-ZZpUowo6YNaW3q4f5Y8Q" target="_blank">
+                <span class="fa fa-youtube-square"></span>
+            </a>
+            <h1>1 USD</h1>
+            <h3>DZD - Algerian Dinar</h3>
+            <div class="exchange">
+                <div class="rate-section">
+                    <h2>BUY RATE</h2>
+                    <div class="buy" id="dzd-buy">0.00</div>
                 </div>
-                <h1>1 USD</h1>
-                <h3>DZD - Algerian Dinar</h3>
-                <div class="exchange">
-                    <div class="buy">
-                        <h2>BUY RATE</h2>
-                        <h1 id="dzd-buy">0.00</h1>
-                    </div>
-                    <div class="sell">
-                        <h2>SELL RATE</h2>
-                        <h1 id="dzd-sell">0.00</h1>
-                    </div>
-                </div>
-                <div class="last-update" id="dzd-last-update">
-                    Last update: loading...
+                <div class="rate-section">
+                    <h2>SELL RATE</h2>
+                    <div class="sell" id="dzd-sell">0.00</div>
                 </div>
             </div>
+            <div class="last-update" id="dzd-last-update">
+                Last update: loading...
+            </div>
+        </div>
 
-            <!-- USD to VND Rate -->
-            <div class="rate-card">
-                <div>
-                    <a href="https://www.youtube.com/channel/UCB-ZZpUowo6YNaW3q4f5Y8Q" target="_blank">
-                        <span class="fa fa-youtube-square"></span>
-                    </a>
+        <!-- USD to VND Rate Card -->
+        <div class="rate-card">
+            <a href="https://www.youtube.com/channel/UCB-ZZpUowo6YNaW3q4f5Y8Q" target="_blank">
+                <span class="fa fa-youtube-square"></span>
+            </a>
+            <h1>1 USD</h1>
+            <h3>VND - Vietnamese Dong</h3>
+            <div class="exchange">
+                <div class="rate-section">
+                    <h2>BUY RATE</h2>
+                    <div class="buy" id="vnd-buy">0.00</div>
                 </div>
-                <h1>1 USD</h1>
-                <h3>VND - Vietnamese Dong</h3>
-                <div class="exchange">
-                    <div class="buy">
-                        <h2>BUY RATE</h2>
-                        <h1 id="vnd-buy">0.00</h1>
-                    </div>
-                    <div class="sell">
-                        <h2>SELL RATE</h2>
-                        <h1 id="vnd-sell">0.00</h1>
-                    </div>
+                <div class="rate-section">
+                    <h2>SELL RATE</h2>
+                    <div class="sell" id="vnd-sell">0.00</div>
                 </div>
-                <div class="last-update" id="vnd-last-update">
-                    Last update: loading...
-                </div>
+            </div>
+            <div class="last-update" id="vnd-last-update">
+                Last update: loading...
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            async function fetchRates() {
-                try {
-                    // Fetch exchange rates from API with the API key
-                    const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD?apikey=5cc63013abfcd5b317b8a4de');
-                    const data = await response.json();
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        async function fetchRates() {
+            try {
+                // Fetch exchange rates from API
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD?apikey=5cc63013abfcd5b317b8a4de');
+                const data = await response.json();
 
-                    // Update DZD rates
-                    document.getElementById("dzd-buy").textContent = `${data.rates.DZD.toFixed(2)}`;
-                    document.getElementById("dzd-sell").textContent = `${(data.rates.DZD * 0.98).toFixed(2)}`;
-                    document.getElementById("dzd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
+                // Update DZD rates
+                document.getElementById("dzd-buy").textContent = `${data.rates.DZD.toFixed(2)}`;
+                document.getElementById("dzd-sell").textContent = `${(data.rates.DZD * 0.98).toFixed(2)}`;
+                document.getElementById("dzd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
 
-                    // Update VND rates
-                    document.getElementById("vnd-buy").textContent = `${data.rates.VND.toFixed(2)}`;
-                    document.getElementById("vnd-sell").textContent = `${(data.rates.VND * 0.98).toFixed(2)}`;
-                    document.getElementById("vnd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
-                } catch (error) {
-                    console.error("Failed to fetch exchange rates:", error);
-                }
+                // Update VND rates
+                document.getElementById("vnd-buy").textContent = `${data.rates.VND.toFixed(2)}`;
+                document.getElementById("vnd-sell").textContent = `${(data.rates.VND * 0.98).toFixed(2)}`;
+                document.getElementById("vnd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
+            } catch (error) {
+                console.error("Failed to fetch exchange rates:", error);
             }
+        }
 
-            // Initial fetch and interval for refreshing every 60 seconds
-            fetchRates();
-            setInterval(fetchRates, 60000); // Update every 60 seconds
-        });
-    </script>
+        // Initial fetch and interval for refreshing every 60 seconds
+        fetchRates();
+        setInterval(fetchRates, 60000); // Update every 60 seconds
+    });
+</script>
 
 </body>
 </html>
