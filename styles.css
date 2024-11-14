@@ -1,95 +1,114 @@
-/* Basic resets */
+/* Reset margins and padding */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
+/* Background and centering main container */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1c1c3c, #35357d);
-  color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
 }
 
-/* Container for centering */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.slides {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-article {
-  background: #292b4d;
-  border-radius: 12px;
-  padding: 25px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
-}
-
-article:hover {
-  transform: translateY(-5px);
-}
-
-h1 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
-  color: #ffd700;
-}
-
-h2 {
-  font-size: 0.9em;
-  color: #bbb;
-}
-
-h3 {
-  font-size: 0.9em;
-  color: #aaa;
-}
-
-.rate {
-  margin: 20px 0;
-}
-
-.rate-value {
-  font-size: 2.5em;
-  color: #4dff85;
-}
-
-.last-update p {
-  font-size: 0.8em;
-  color: #999;
-  font-style: italic;
-  margin-top: 10px;
-  animation: fade-in 1s ease-out;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@media (max-width: 768px) {
-  .slides {
-    flex-direction: column;
-  }
-
-  article {
     width: 90%;
-  }
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Main title styling */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #f1c40f;
+}
+
+/* Exchange rate card styling */
+.exchange-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.exchange-card:hover {
+    transform: translateY(-5px);
+}
+
+.currency-name {
+    font-size: 1.5rem;
+    color: #f39c12;
+}
+
+.exchange-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rate-section {
+    margin: 0 20px;
+    text-align: center;
+}
+
+.rate-section h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.rate-section h3 {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #e67e22;
+}
+
+/* Rate numbers styling */
+.rate {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+/* Last update section */
+.last-update {
+    font-size: 0.9rem;
+    color: #bdc3c7;
+    margin-top: 10px;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .exchange-card {
+        flex-direction: column;
+    }
+
+    .currency-name {
+        font-size: 1.25rem;
+    }
+
+    .rate-section {
+        margin: 10px 0;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
 }
