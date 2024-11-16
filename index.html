@@ -7,8 +7,25 @@
     <meta name="description" content="TMTM Exchange offers real-time currency exchange rates and conversion services.">
     <meta name="keywords" content="currency exchange, real-time rates, USD, DZD, VND">
     <meta name="author" content="TMTM Exchange">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <style>
+        /* Styles for TMTM Exchange */
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+        .card-hover {
+            transition: transform 0.2s;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+        .rate-card {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
@@ -198,6 +215,60 @@
         </div>
     </footer>
 
-    <script src="js/scripts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let rates = {};
+
+            async function fetchRates() {
+                const apiUrl = 'https://api.exchangerate-api.com/v4/latest/USD?apikey=5cc63013abfcd5b317b8a4de';
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const data = await response.json();
+                    rates = data.rates;
+
+                    // Update DZD rates
+                    document.getElementById("dzd-buy").textContent = data.rates.DZD.toFixed(2);
+                    document.getElementById("dzd-sell").textContent = (data.rates.DZD * 0.98).toFixed(2);
+                    document.getElementById("dzd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
+
+                    // Update VND rates
+                    document.getElementById("vnd-buy").textContent = data.rates.VND.toFixed(2);
+                    document.getElementById("vnd-sell").textContent = (data.rates.VND * 0.98).toFixed(2);
+                    document.getElementById("vnd-last-update").textContent = `Last update: ${new Date().toLocaleString()}`;
+                } catch (error) {
+                    console.error("Failed to fetch exchange rates:", error);
+                    alert("Could not load exchange rates. Please try again later.");
+                }
+            }
+
+            // Calculator functionality
+            document.getElementById("calculate-btn").addEventListener("click", () => {
+                const amount = parseFloat(document.getElementById("amount").value);
+                const fromCurrency = document.getElementById("from-currency").value;
+                const toCurrency = document.getElementById("to-currency").value;
+                
+                if (isNaN(amount)) {
+                    alert("Please enter a valid amount");
+                    return;
+                }
+
+                let result;
+                if (fromCurrency === "USD") {
+                    result = amount * rates[toCurrency];
+                } else if (toCurrency === "USD") {
+                    result = amount / rates[fromCurrency];
+                } else {
+                    const toUSD = amount / rates[fromCurrency];
+                    result = toUSD * rates[toCurrency];
+                }
+
+                document.getElementById("conversion-result").textContent = 
+                    `${amount.toFixed(2)} ${fromCurrency} = ${result.toFixed(2)} ${toCurrency}`;
+            });
+
+            fetchRates();
+        });
+    </script>
 </body>
 </html>
