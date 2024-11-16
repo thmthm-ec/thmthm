@@ -1,109 +1,17 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+/* Styles for TMTM Exchange */
+.gradient-bg {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
 }
-
-/* Body styling */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: #fff;
-    text-align: center;
+.card-hover {
+    transition: transform 0.2s;
 }
-
-/* Main container styling */
-.container {
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
+.card-hover:hover {
+    transform: translateY(-5px);
 }
-
-/* Rate card styling */
-.rates-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
 .rate-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #fff;
-    border: 1px solid #ddd;
-    margin: 10px 0;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    color: #333;
+    animation: fadeIn 0.5s ease-in;
 }
-
-.rate-card h1 {
-    font-size: 1.5rem;
-    color: #f1c40f;
-    margin: 5px 0;
-}
-
-.rate-card h3 {
-    font-size: 1rem;
-    color: #666;
-}
-
-.exchange {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.rate-section {
-    text-align: center;
-    flex: 1;
-}
-
-.buy, .sell {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.buy {
-    color: green;
-}
-
-.sell {
-    color: red;
-}
-
-.last-update {
-    font-size: 0.9rem;
-    color: #999;
-    margin-top: 10px;
-    opacity: 0.8;
-}
-
-.rate-card .fa-youtube-square {
-    font-size: 30px;
-    color: red;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-}
-
-@media (max-width: 768px) {
-    .rate-card {
-        width: 90%;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
